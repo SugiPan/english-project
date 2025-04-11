@@ -3,63 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="A poetic character study of Śakuntalā from Kālidāsa’s timeless play — exploring love, memory, and destiny." />
-  <title>Śakuntalā: A Character Study</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📜</text></svg>">
-
+  <title>Shakuntala: A Character Study</title>
   <style>
     body {
-      font-family: Georgia, serif;
-      background-color: #241004;
-      color: #fce9c8;
-      padding: 40px;
-      max-width: 800px;
-      margin: auto;
+      margin: 0;
+      padding: 0;
+      background-color: #2e1b0e;
+      color: #f5deb3;
+      font-family: 'Georgia', serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      transition: background-color 1s ease, color 1s ease;
+    }
+
+    .container {
+      padding: 2rem;
+      max-width: 900px;
     }
 
     h1 {
-      font-size: 2.5em;
-      text-align: center;
-      margin-bottom: 0.5em;
+      font-size: 2.8em;
+      margin-bottom: 0.3em;
     }
 
     h3 {
-      text-align: center;
-      padding-bottom: 10px;
-      margin-bottom: 0.5em;
-      border-bottom: 2px solid #fce9c8;
       font-style: italic;
-      font-weight: normal; 
-      font-size: 1.2em;    
+      font-weight: normal;
+      color: #ffe4b5;
+      margin-top: 0;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background-color: #a67c52;
+      margin: 2em auto;
+      width: 60%;
     }
 
     p {
-      text-align: justify;
-      font-size: 1.1em;
-      line-height: 1.4;
+      font-size: 1.15em;
+      line-height: 1.7;
+      margin-bottom: 2em;
     }
 
-    .credits {
-      text-align: right;
-      margin-top: 2em;
+    .authors {
+      font-weight: bold;
       font-size: 1em;
-      color: #d4c4a8;
+      color: #f5deb3;
+    }
+
+    .toggle-container {
+      margin-top: 2rem;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #a67c52;
+      color: #fff;
+      margin: 0 10px;
+    }
+
+    .night {
+      background-color: #0e0e2e;
+      color: #e0dede;
+    }
+
+    .night h3 {
+      color: #aaaaf3;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.2; }
+      to { opacity: 1; }
+    }
+
+    audio {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+        height: auto;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Shakuntala: A Character Study</h1>
-  <h3>“Marked by love, forgotten by fate — the tale of Śakuntalā.”</h3>
-  
-  <p>
-    In a forest where sages chant and fate whispers through rustling leaves,  
-    a woman’s love story unfolds — tender, tragic, unforgettable.  
-    From Kālidāsa’s ink to our imaginations, the wait is nearly over.  
-    Full feature arriving soon.
-  </p>
+  <div class="stars" id="stars"></div>
 
-  <div class="credits">
-    <strong>Authors:</strong> Sugyan Panigrahi, Sujit Kumar Yadav, Sushant Kumar, Paranjay Gupta
+  <div class="container">
+    <h1>Shakuntala: A Character Study</h1>
+    <h3>“Marked by love, forgotten by fate — the tale of Śakuntalā.”</h3>
+    <hr />
+    <p>
+      In a forest where sages chant and destiny rustles through every leaf,<br />
+      <strong>her story blossoms</strong> — tender, tragic, timeless.<br />
+      A maiden of nature, a love lost in silence,<br />
+      <strong>Shakuntala</strong> lingers in memory and myth alike.
+      <br /><br />
+      From <strong>Kālidāsa’s quill</strong> to our canvas of thought,<br />
+      we trace her journey — of love, loss, and the longing that outlives it all.
+      <br /><br />
+      <em>A feature drawn from classical echoes, arriving soon.</em>
+    </p>
+    <p class="authors">
+      By: Sugyan Panigrahi, Sujit Kumar Yadav, Sushant Kumar, Paranjay Gupta
+    </p>
+
+    <div class="toggle-container">
+      <button onclick="toggleNight()">🌙 Toggle Night Mode</button>
+      <button onclick="toggleMusic()">🎶 Play/Stop Music</button>
+    </div>
+
+    <audio id="music" loop>
+      <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_5b8a340461.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
+
+  <script>
+    const body = document.body;
+    const starsContainer = document.getElementById("stars");
+
+    function toggleNight() {
+      body.classList.toggle("night");
+
+      // Add stars if in night mode
+      if (body.classList.contains("night")) {
+        createStars();
+      } else {
+        starsContainer.innerHTML = "";
+      }
+    }
+
+    function createStars() {
+      starsContainer.innerHTML = "";
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${1 + Math.random() * 2}s`;
+        starsContainer.appendChild(star);
+      }
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("music");
+      if (music.paused) {
+        music.play();
+      } else {
+        music.pause();
+      }
+    }
+  </script>
 </body>
 </html>
