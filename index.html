@@ -9,21 +9,11 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
-      background-color: #2e1b0e;
+      padding: 2rem;
+      background-color: #241004; /* Your sacred tone */
       color: #f5deb3;
       font-family: 'Georgia', serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
       text-align: center;
-      transition: background-color 1s ease, color 1s ease;
-    }
-
-    .container {
-      padding: 2rem;
-      max-width: 900px;
     }
 
     h1 {
@@ -34,7 +24,7 @@
     h3 {
       font-style: italic;
       font-weight: normal;
-      color: #ffe4b5;
+      color: #ffd9a0;
       margin-top: 0;
     }
 
@@ -46,11 +36,14 @@
       width: 60%;
     }
 
-      p {
-  font-size: 1.15em;
-  line-height: 1.7;
-  margin-bottom: 2em;
-  text-align: justify;
+    p {
+      font-size: 1.15em;
+      line-height: 1.7;
+      margin-bottom: 2em;
+      text-align: justify;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .authors {
@@ -59,126 +52,38 @@
       color: #f5deb3;
     }
 
-    .toggle-container {
-      margin: 1.5rem auto;
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    button {
-      padding: 0.6rem 1.2rem;
-      border: none;
-      border-radius: 5px;
-      font-size: 1em;
-      cursor: pointer;
-      background-color: #a67c52;
-      color: #fff;
-    }
-
-    .night {
-      background-color: #0e0e2e;
-      color: #e0dede;
-    }
-
-    .night h3 {
-      color: #aaaaf3;
-    }
-
-    .stars {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 2s infinite ease-in-out alternate;
-    }
-
-    @keyframes twinkle {
-      from { opacity: 0.2; }
-      to { opacity: 1; }
-    }
-
     @media (max-width: 600px) {
-      body {
-        padding: 1rem;
-        height: auto;
-      }
-
       h1 {
         font-size: 2em;
       }
 
       p {
         font-size: 1em;
+        text-align: left;
       }
     }
   </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
 
-  <div class="container">
-    <h1>Shakuntala: A Character Study</h1>
-    <h3>“Marked by love, forgotten by fate — the tale of Śakuntalā.”</h3>
-    <hr />
+  <h1>Shakuntala: A Character Study</h1>
+  <h3>“Marked by love, forgotten by fate — the tale of Śakuntalā.”</h3>
+  <hr />
 
-    <div class="toggle-container">
-      <button onclick="toggleNight()">🌙 Toggle Night Mode</button>
-    </div>
+  <p>
+    In a forest where sages chant and destiny rustles through every leaf,<br />
+    <strong>her story blossoms</strong> — tender, tragic, timeless.<br />
+    A maiden of nature, a love lost in silence,<br />
+    <strong>Shakuntala</strong> lingers in memory and myth alike.
+    <br /><br />
+    From <strong>Kālidāsa’s quill</strong> to our canvas of thought,<br />
+    we trace her journey — of love, loss, and the longing that outlives it all.
+    <br /><br />
+    <em>A feature drawn from classical echoes, arriving soon.</em>
+  </p>
+  <p class="authors">
+    By: Sugyan Panigrahi, Sujit Kumar Yadav, Sushant Kumar, Paranjay Gupta
+  </p>
 
-    <p>
-      In a forest where sages chant and destiny rustles through every leaf,<br />
-      <strong>her story blossoms</strong> — tender, tragic, timeless.<br />
-      A maiden of nature, a love lost in silence,<br />
-      <strong>Shakuntala</strong> lingers in memory and myth alike.
-      <br /><br />
-      From <strong>Kālidāsa’s quill</strong> to our canvas of thought,<br />
-      we trace her journey — of love, loss, and the longing that outlives it all.
-      <br /><br />
-      <em>A feature drawn from classical echoes, arriving soon.</em>
-    </p>
-    <p class="authors">
-      By: Sugyan Panigrahi, Sujit Kumar Yadav, Sushant Kumar, Paranjay Gupta
-    </p>
-  </div>
-
-  <script>
-    const body = document.body;
-    const starsContainer = document.getElementById("stars");
-
-    function toggleNight() {
-      body.classList.toggle("night");
-
-      if (body.classList.contains("night")) {
-        createStars();
-      } else {
-        starsContainer.innerHTML = "";
-      }
-    }
-
-    function createStars() {
-      starsContainer.innerHTML = "";
-      for (let i = 0; i < 100; i++) {
-        const star = document.createElement("div");
-        star.classList.add("star");
-        star.style.top = `${Math.random() * 100}%`;
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.animationDuration = `${1 + Math.random() * 2}s`;
-        starsContainer.appendChild(star);
-      }
-    }
-  </script>
 </body>
 </html>
